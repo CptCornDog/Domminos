@@ -1,0 +1,4 @@
+﻿  Main.cpp
+c:\users\1620601\documents\visual studio 2017\projects\domminos\domminos\main.cpp(60): warning C4018: '<': signed/unsigned mismatch
+  Domminos.vcxproj -> c:\users\1620601\documents\visual studio 2017\Projects\Domminos\Debug\Domminos.exe
+  Domminos.vcxproj -> c:\users\1620601\documents\visual studio 2017\Projects\Domminos\Debug\Domminos.pdb (Partial PDB)
