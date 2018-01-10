@@ -54,7 +54,8 @@ bool isIn(list<string> l, string s)
 {
 	for (string word : l)
 	{
-		if (toLower(s) == word)
+		
+		if (toLower(s) == toLower(word))
 			return true;
 
 
@@ -79,11 +80,13 @@ bool match(string first, string last)
 	string firstLower = toLower(first);
 	string lastLower = toLower(last);
 
-	return first[first.length() - 1] == last[0];
+	return firstLower[firstLower.length() - 1] == lastLower[0];
 
 
 
 }
+
+
 
 
 
@@ -93,27 +96,43 @@ int main()
 
 	list<string> words;
 	readFile(words, "Elements.txt");
+	
+	cout << words.size() << endl;
 
+	
 	cout << "Hello player One please enter your name" << endl;
 	string playerOne = "";
 	getline(cin, playerOne);
 
-	
+
 	cout << "Hello player Two please enter your name" << endl;
 	string playerTwo = "";
 	getline(cin, playerTwo);
 
-	
-	cout << "Okay "<<playerOne << "please enter your element" << endl;
-		string playerOneWord = "";
+
+	cout << "Okay " << playerOne << "please enter your element" << endl;
+	string playerOneWord = "";
 	getline(cin, playerOneWord);
 
-	cout << "Okay "  << playerTwo << "please enter your element" << endl;
+	cout << "Okay " << playerTwo << "please enter your element" << endl;
 	string playerTwoWord = "";
 	getline(cin, playerTwoWord);
-
 	
 	bool in = isIn(words, playerOneWord);
+	bool in2 = isIn(words, playerTwoWord);
+	bool isMatch = match(playerOneWord, playerTwoWord);
+	
+
+	if (in && in2 && isMatch)
+	{
+		cout << "Next move" << endl;
+	}
+	else
+	{
+		cout << "Letters dont match you losse" << endl << "press q to quite or r to restart" << endl;
+	}
+	system("pause");
+
 
 
 
