@@ -86,6 +86,13 @@ bool match(string first, string last)
 
 }
 
+viod turn (string player)
+{
+	cout << "Okay " << player << "please enter your element" << endl;
+	string playerWord = "";
+	getline(cin, playerWord);
+}
+
 
 
 
@@ -96,8 +103,6 @@ int main()
 
 	list<string> words;
 	readFile(words, "Elements.txt");
-	
-	cout << words.size() << endl;
 
 	
 	cout << "Hello player One please enter your name" << endl;
@@ -109,14 +114,25 @@ int main()
 	string playerTwo = "";
 	getline(cin, playerTwo);
 
-
+	bool player1Turn = true;
+	if (player1turn)
+	{
+		Turn(player1);
+	}
+	else
+	{
+		Turn(player2);
+	}
 	cout << "Okay " << playerOne << "please enter your element" << endl;
 	string playerOneWord = "";
 	getline(cin, playerOneWord);
+	for (string word : words )
+	{
+		if (word == playerOneWord)
 
-	cout << "Okay " << playerTwo << "please enter your element" << endl;
-	string playerTwoWord = "";
-	getline(cin, playerTwoWord);
+	}
+
+	
 	
 	bool in = isIn(words, playerOneWord);
 	bool in2 = isIn(words, playerTwoWord);
