@@ -63,8 +63,7 @@ bool isIn(list<string> l, string s)
     return false;
  
 }
- 
- 
+
  
 /*
 This function returns true if the last letter of one string matches the first letter of another
@@ -80,18 +79,48 @@ bool match(string first, string last)
     string firstLower = toLower(first);
     string lastLower = toLower(last);
  
-    return firstLower[firstLower.length() - 1] == lastLower[0];
+    return firstLower[0] == lastLower[lastLower.length() - 1];
  
  
  
 }
- 
-void turn (string player, list<string> words, string &lastWord)
+
+bool hasWordsLeft(list<string>l, string lastWord)
+{
+	for (string s : l)
+	{
+		if (match(s, lastWord))
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+
+void erase(list<string> &l, string s)
+{
+	string sLower = toLower(s);
+
+	for (auto i = l.begin(); i != l.end(); i++)
+	{
+		string iLower = toLower(*i);
+
+		if (iLower == sLower)
+		{
+			l.erase(i);
+			break;
+		}
+	}
+}
+
+void turn (string player, list<string> &words, string &lastWord)
 {
     string playerWord = "";
-    while (true)
+
+	while (true)
     {
-        cout << "Okay " << player << "please enter your element" << endl;
+        cout << "Okay " << player << " please enter your element" << endl;
         getline(cin, playerWord);
  
         bool in = isIn(words, playerWord);
@@ -101,18 +130,20 @@ void turn (string player, list<string> words, string &lastWord)
         if (in  && isMatch)
         {
             cout << "Next move" << endl;
+			erase(words, playerWord);
             break;
         }
         else
         {
-            cout << "Letters dont match you losse" << endl << "press q to quite or r to restart" << endl;
+			cout << "Please enter a correct element" << endl;
         }
     }
  
+	
     lastWord = playerWord;
 }
  
- 
+
  
  
  
@@ -141,13 +172,23 @@ int main()
     string lastWrod;
     while (true)
     {
-        if (playerOneTurn)
+		if (playerOneTurn)
         {
-            turn(playerOne, words, lastWrod);
+			if (!hasWordsLeft(words, lastWrod))
+			{
+				cout << "You lost " << playerOne << endl;
+				break;
+			}
+			turn(playerOne, words, lastWrod);
  
         }
         else
         {
+			if (!hasWordsLeft(words, lastWrod))
+			{
+				cout << "You lost " << playerTwo << endl;
+				break;
+			}
             turn(playerTwo, words, lastWrod);
         }
         playerOneTurn = !playerOneTurn;
